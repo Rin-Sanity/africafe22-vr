@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="aframe-v1.2.0.min.js"></script>
+    <title>AfricaVR</title>
+</head>
+<body>
+<a-scene>
+    <a-assets>
+        <!-- ここを変える -->
+      <video id="video" src="op.mp4" preload="auto" autoplay></video>
+         <!-- ここを変える -->
+    </a-assets>
+
+    <a-videosphere src="#video" rotation="0 -65 0"></a-videosphere>
+
+    <a-text
+        value="アフリカンVR"
+        font="custom-msdf.json"
+        font-image="custom-msdf.png"
+        negate="false"
+        scale="2 2 1"
+        position="-3 1 -4"
+        color="red">
+    </a-text>
+    <a-text
+        value="このボックスに視点を合わせてね"
+        font="custom-msdf.json"
+        font-image="custom-msdf.png"
+        negate="false"
+        scale="2 2 1"
+        position="-1 -1 -4"
+        color="red">
+    </a-text>
+
+    <!-- box for link　地図 -->
+    <a-box id="link" position="-0.4 0.5 -2.5" scale=" 0.4 0.4 0.4" color="yellow" linkbox></a-box>
+
+    <a-camera>
+        <a-cursor fuse="true" fuse-timeout="1000"></a-cursor>
+    </a-camera>
+
+</a-scene>
+
+
+
+<script>
+    function toLink(){
+        window.location.href = "./select.html"
+    }
+      
+    AFRAME.registerComponent('linkbox', {
+        init: function () {  
+         console.log(this);　
+         const element = this.el;　　
+         element.addEventListener('mouseenter', function () {　//Click with your eyes instead of the mouse
+            console.log('mouseenter');
+            setTimeout(toLink, 5000); //Execute the toLink function
+              
+        });
+        }
+    });
+      
+</script>
+      
+</body>
+</html>
